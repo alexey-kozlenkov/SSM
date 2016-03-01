@@ -1,5 +1,6 @@
 __author__ = 'Alexey'
-from math import sqrt
+from math import sqrt, floor
+from scipy.stats import chisquare
 
 
 def method_of_moments_test(sequence, boundary):
@@ -28,3 +29,11 @@ def covariation_test(sequence, t, boundary):
         if abs(r[i] - r_estimation[i]) < c[i] * boundary / (12 * sqrt(n - 1)):
             return False
     return True
+
+
+def chi_square_test(sequence, k, boundary):
+    pieces = {i: 0 for i in range(k)}
+    for element in sequence:
+        pieces[floor(element * k)] += 1
+    chi2_test = chisquare(pieces.values())
+    return chi2_test[1] >= 1 - boundary
