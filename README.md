@@ -1,2 +1,2 @@
 # SSM
-Simulation adn statistical modeling
+Simulation and statistical modeling
