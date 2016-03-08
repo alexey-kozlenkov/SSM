@@ -1,7 +1,7 @@
 __author__ = 'Alexey'
 from math import sqrt, floor
 
-from scipy.stats import chisquare
+from scipy.stats import chi2
 
 
 def method_of_moments_test(sequence, quantile):
@@ -31,9 +31,10 @@ def covariation_test(sequence, t, quantile):
     return True
 
 
-def chi_square_test(sequence, k, boundary):
-    pieces = {i: 0 for i in range(k)}
+def chi_square_test(sequence, k):
+    frequencies = {i: 0 for i in range(k)}
     for element in sequence:
-        pieces[floor(element * k)] += 1
-    chi2_test = chisquare(pieces.values())
-    return chi2_test[1] >= 1 - boundary
+        frequencies[floor(element * k)] += 1
+    expected_frequency = float(len(sequence)) / k
+    chi_square = sum((frequencies[i] - expected_frequency) ** 2 / expected_frequency for i in range(k))
+    return chi_square, chi2.cdf(chi_square, k-1)

@@ -12,7 +12,7 @@ print 'Multiplicative congruential generator: 1: %f, 100: %f, 900: %f, 1000: %f.
 plot_histogram(mcg_result, 20, 'mcg', title='Multiplicative congruential generator')
 print 'Method of moments test: ', method_of_moments_test(mcg_result, standard_distribution_quantile)
 print 'Covariation test: ', covariation_test(mcg_result, 30, standard_distribution_quantile)
-print 'Chi-square test: ', chi_square_test(mcg_result, 50, 0.18)
+print 'Chi-square test: ', chi_square_test(mcg_result, 10)
 
 print
 
@@ -25,4 +25,4 @@ print 'MacLaren-Marsaglia generator: 1: %f, 100: %f, 900: %f, 1000: %f.' % \
 plot_histogram(mmg_result, 20, 'maclaren-marsaglia', title='MacLaren-Marsaglia generator')
 print 'Method of moments test: ', method_of_moments_test(mmg_result, standard_distribution_quantile)
 print 'Covariation test: ', covariation_test(mmg_result, 30, standard_distribution_quantile)
-print 'Chi-square test: ', chi_square_test(mmg_result, 50, 0.18)
+print 'Chi-square test: ', chi_square_test(mmg_result, 10)
