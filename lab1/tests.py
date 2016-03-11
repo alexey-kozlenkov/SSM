@@ -19,10 +19,10 @@ def covariation_test(sequence, t, quantile):
     r = [1. / 12] + [0.] * (t - 1)
     r_estimation = [
         1. / (n - j - 1) * sum(sequence[i] * sequence[i + j] for i in range(n - j)) -
-        float(n) * average ** 2 / (n - 1) for j in range(t)]
+        float(n) * average ** 2 / (n - 1) for j in range(t + 1)]
     c = [sqrt(2)] + [1.] * (t - 1)
-    for i in range(t):
-        if abs(r[i] - r_estimation[i]) < c[i] * quantile / (12. * sqrt(n - 1)):
+    for i in range(t + 1):
+        if abs(r[i] - r_estimation[i]) >= c[i] * quantile / (12. * sqrt(n - 1)):
             return False, i
     return True
 
