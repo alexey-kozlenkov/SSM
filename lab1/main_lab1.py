@@ -1,7 +1,7 @@
 __author__ = 'Alexey'
 from lab1.data import mcg_data, mmg_data
 from util.generator.base_random_variable import multiplicative_congruential_generator, maclaren_marsaglia_generator
-from histogram import plot_histogram
+from util.plotter import plot_histogram
 from tests import method_of_moments_test, covariation_test, chi_square_test
 
 standard_distribution_quantile = 1.959964

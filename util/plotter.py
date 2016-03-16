@@ -1,5 +1,6 @@
-__author__ = 'Alexey'
 from matplotlib import pyplot as plot
+
+__author__ = 'Alexey'
 
 
 def plot_histogram(sequence, k, filename, title=None):
@@ -8,5 +9,5 @@ def plot_histogram(sequence, k, filename, title=None):
     plot.ylim(0, len(sequence) * 1.5 / k)
     plot.hist(sequence, k, zorder=3)
     plot.title(title if title else '')
-    plot.savefig('graphics/' + filename + '.png')
+    plot.savefig('../graphics/' + filename + '.png')
     plot.clf()
