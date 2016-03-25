@@ -18,9 +18,9 @@ plot_histogram_with_exact_function(geometric_seq, k, exact_geometric_density[1],
                                    'lab2/geometric_seq', title='Geometric distribution')
 
 n = 10
-exact_geometric_density_function = build_exact_geometric_distribution_function(p, n)
+exact_geometric_distribution_function = build_exact_geometric_distribution_function(p, n)
 empiric_geometric_distribution_function = build_empiric_distribution_function(geometric_seq, n)
-plot_two_functions(exact_geometric_density_function[0], exact_geometric_density_function[1], 'Exact distr. function',
+plot_two_functions(exact_geometric_distribution_function[0], exact_geometric_distribution_function[1], 'Exact distr. function',
                    empiric_geometric_distribution_function[0], empiric_geometric_distribution_function[1],
                    'Empiric distr. function',
                    'lab2/geometric_distribution_functions', 'Geometric distribution functions')
