@@ -21,9 +21,9 @@ plot_histogram_with_exact_function(negative_binomial_sequence, k, exact_negative
                                    'Exact negative binomial distribution', 'lab2/negative_binomial_seq',
                                    title='Negative binomial distribution')
 
-k = 25
-exact_negative_binomial_density_function = build_exact_negative_binomial_distribution_function(p, r, k)
-empiric_negative_binomial_distribution_function = build_empiric_distribution_function(negative_binomial_sequence, k)
+n = int(max(negative_binomial_sequence))
+exact_negative_binomial_density_function = build_exact_negative_binomial_distribution_function(p, r, n)
+empiric_negative_binomial_distribution_function = build_empiric_distribution_function(negative_binomial_sequence, n)
 plot_two_functions(exact_negative_binomial_density_function[0], exact_negative_binomial_density_function[1], 'Exact distr. function',
                    empiric_negative_binomial_distribution_function[0], empiric_negative_binomial_distribution_function[1],
                    'Empiric distr. function',

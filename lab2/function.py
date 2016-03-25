@@ -30,3 +30,20 @@ def build_empiric_distribution_function(sequence, n=1000):
     x = [i for i in range(n)]
     y = [float(len(filter(lambda x: x < x_i, sequence))) / len(sequence) for x_i in x]
     return x, y
+
+
+def get_markov_chain_state(p, x):
+    sum = 0
+    for p_i in p:
+        sum += p_i[0]
+        if x <= sum:
+            return p_i[1]
+
+
+def build_chain(p, p0, base_sequence):
+    previous_state = get_markov_chain_state(p0, base_sequence[0])
+    chain = [previous_state]
+    for x in base_sequence[1:]:
+        previous_state = get_markov_chain_state(p[previous_state], x)
+        chain.append(previous_state)
+    return chain
