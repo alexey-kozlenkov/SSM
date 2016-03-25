@@ -15,7 +15,7 @@ N = 1000
 base_sequence = multiplicative_congruential_generator(mcg_data.a0, mcg_data.M, mcg_data.beta, r * N)
 negative_binomial_sequence = negative_binomial(base_sequence, p, r)
 
-k = 25
+k = int(max(negative_binomial_sequence))
 exact_negative_binomial_density = build_exact_negative_binomial_density(p, r, n=k)
 plot_histogram_with_exact_function(negative_binomial_sequence, k, exact_negative_binomial_density[1],
                                    'Exact negative binomial distribution', 'lab2/negative_binomial_seq',

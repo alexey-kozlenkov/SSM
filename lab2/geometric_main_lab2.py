@@ -12,7 +12,7 @@ p = 0.7
 base_sequence = multiplicative_congruential_generator(mcg_data.a0, mcg_data.M, mcg_data.beta, N)
 geometric_seq = geometric(base_sequence, p)
 
-k = 10
+k = int(max(geometric_seq))
 exact_geometric_density = build_exact_geometric_density(p, n=k)
 plot_histogram_with_exact_function(geometric_seq, k, exact_geometric_density[1], 'Exact geometric distribution',
                                    'lab2/geometric_seq', title='Geometric distribution')
