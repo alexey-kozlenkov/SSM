@@ -36,6 +36,6 @@ def plot_two_functions(x1, y1, label1, x2, y2, label2, filename, title=None):
     plot.plot(x2, y2, color='red', label=label2)
 
     plot.title(title if title else '')
-    plot.legend(loc=4)
-    plot.savefig('../graphics/' + filename + '.png')
+    leg = plot.legend(loc=9, bbox_to_anchor=(0.5, -0.05), ncol=2)
+    plot.savefig('../graphics/' + filename + '.png', bbox_inches='tight', additional_artists=(leg,))
     plot.clf()
