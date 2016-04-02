@@ -6,7 +6,7 @@ from base_random_variable import builtin_generator
 
 def normal(average, dispersion, n, N=12):
     standard = normal_standard(n, N)
-    return map(lambda x: average - x * sqrt(dispersion), standard)
+    return [average - x * sqrt(dispersion) for x in standard]
 
 
 def normal_standard(n, N=12):
@@ -16,4 +16,4 @@ def normal_standard(n, N=12):
 
 def exponential(l, n):
     base_sequence = builtin_generator(n)
-    return map(lambda a: -log(a) / l, base_sequence)
+    return [-log(x) / l for x in base_sequence]

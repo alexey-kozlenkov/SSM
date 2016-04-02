@@ -3,7 +3,7 @@ from math import ceil, log
 
 
 def geometric(base_sequence, p):
-    return map(lambda x: ceil(log(x) / log(1 - p) - 1), base_sequence)
+    return [ceil(log(x) / log(1 - p) - 1) for x in base_sequence]
 
 
 def negative_binomial(base_sequence, p, r):
