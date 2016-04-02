@@ -13,20 +13,18 @@ def plot_histogram(sequence, k, filename, title=None):
     plot.clf()
 
 
-def plot_histogram_with_exact_function(sequence, k, exact_y, exact_label, filename, title=None):
+def plot_histogram_with_exact_function(sequence, k, exact_y, exact_label, filename, title=None, range_p=None):
     plot.xkcd()
     plot.grid(True, linewidth=0.5, zorder=0)
-    n, bins, patches = plot.hist(sequence, k, zorder=3, label='Histogram')
-    plot.ylim(0, max(n) * 1.25)
+    n, bins, patches = plot.hist(sequence, k, range=range_p, normed=True, zorder=3, label='Histogram')
 
     bin_centers = [0.5 * (bins[i] + bins[i + 1]) for i in range(k)]
-    plot.plot(bin_centers, map(lambda y: y * len(sequence), exact_y[::len(exact_y) / k]), color='red',
-              label=exact_label, zorder=3)
+    plot.plot(bin_centers, exact_y[::len(exact_y) / k], color='red',  label=exact_label, zorder=3)
 
     plot.xticks()
     plot.title(title if title else '')
-    plot.legend()
-    plot.savefig('../graphics/' + filename + '.png')
+    leg = plot.legend(loc=9, bbox_to_anchor=(0.5, -0.05), ncol=2)
+    plot.savefig('../graphics/' + filename + '.png', bbox_inches='tight', additional_artists=(leg,))
     plot.clf()
 
 
