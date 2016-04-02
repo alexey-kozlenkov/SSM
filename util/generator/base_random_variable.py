@@ -1,4 +1,5 @@
 __author__ = 'Alexey'
+from numpy.random import uniform
 
 
 def multiplicative_congruential_generator(start, module, multiplier, n):
@@ -20,3 +21,7 @@ def maclaren_marsaglia_generator(sequence_1, sequence_2, k, n):
         result.append(v[index])
         v[index] = sequence_1[i + k]
     return result
+
+
+def builtin_generator(n):
+    return uniform(0, 1, n)
