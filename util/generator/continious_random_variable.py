@@ -1,4 +1,4 @@
-from math import sqrt, log
+from math import sqrt, log, tan, pi
 
 __author__ = 'Alexey'
 from base_random_variable import builtin_generator
@@ -17,3 +17,8 @@ def normal_standard(n, N=12):
 def exponential(l, n):
     base_sequence = builtin_generator(n)
     return [-log(x) / l for x in base_sequence]
+
+
+def cauchy(m, c, n):
+    base_sequence = builtin_generator(n)
+    return [m + c * tan(pi * (a - 0.5)) for a in base_sequence]
