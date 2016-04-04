@@ -15,8 +15,8 @@ print 'Average and dispersion are not defined.'
 print 'Empiric median:  %f VS theoretical median: %f' % (sorted(cauchy_sequence)[n/2], m)
 
 # range_bound = ceil(max(map(abs, cauchy_sequence)))
-range_bound = 5
-k = 25
+range_bound = 20
+k = 41
 exact_cauchy_distribution_density = build_exact_cauchy_distribution_density(m, c, n, -range_bound, range_bound)
 plot_histogram_with_exact_function(cauchy_sequence, k, exact_cauchy_distribution_density[1],
                                    'Exact Cauchy distribution', 'lab4/cauchy_seq',
