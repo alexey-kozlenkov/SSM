@@ -23,5 +23,5 @@ def maclaren_marsaglia_generator(sequence_1, sequence_2, k, n):
     return result
 
 
-def builtin_generator(n):
-    return uniform(0, 1, n)
+def builtin_generator(n, a=0, b=1):
+    return uniform(a, b, n)
