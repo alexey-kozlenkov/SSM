@@ -27,3 +27,15 @@ def cauchy(m, c, n):
 def mixed(n, p, first_distribution, second_distribution):
     base_sequence = builtin_generator(n)
     return [first_distribution[i] if base_sequence[i] < p else second_distribution[i] for i in range(n)]
+
+def normal_standard_by_box_muller(n):
+    first_sequence = builtin_generator(n, -1, 1)
+    second_sequence = builtin_generator(n, -1, 1)
+    first_result = []
+    second_result = []
+    for x, y in zip(first_sequence, second_sequence):
+        s = x ** 2 + y ** 2
+        if s and s <= 1:
+            first_result.append(x * sqrt(-2 * log(s) / s))
+            second_result.append(y * sqrt(-2 * log(s) / s))
+    return first_result, second_result
