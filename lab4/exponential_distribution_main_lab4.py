@@ -23,7 +23,3 @@ plot_histogram_with_exact_function(exponential_sequence, k, exact_exponential_di
                                    'Exact exponential distribution', 'lab4/exponential_seq',
                                    'Exponential sequence (%s=%.3f)' % (r'$\lambda$', l),
                                    (0, range_bound))
-
-
-
-

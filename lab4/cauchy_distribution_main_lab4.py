@@ -22,4 +22,3 @@ plot_histogram_with_exact_function(cauchy_sequence, k, exact_cauchy_distribution
                                    'Exact Cauchy distribution', 'lab4/cauchy_seq',
                                    'Cauchy sequence (m=%.3f, c=%.3f)' % (m, c),
                                    (-range_bound, range_bound))
-

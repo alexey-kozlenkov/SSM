@@ -22,3 +22,8 @@ def exponential(l, n):
 def cauchy(m, c, n):
     base_sequence = builtin_generator(n)
     return [m + c * tan(pi * (a - 0.5)) for a in base_sequence]
+
+
+def mixed(n, p, first_distribution, second_distribution):
+    base_sequence = builtin_generator(n)
+    return [first_distribution[i] if base_sequence[i] < p else second_distribution[i] for i in range(n)]
