@@ -1,4 +1,3 @@
-from math import ceil
 from lab4.function import build_exact_cauchy_distribution_density
 from util.generator.continious_random_variable import cauchy
 from util.plotter import plot_histogram_with_exact_function, plot_histogram
@@ -12,7 +11,7 @@ n = 10000
 print 'Cauchy distribution:'
 cauchy_sequence = cauchy(m, c, n)
 print 'Average and dispersion are not defined.'
-print 'Empiric median:  %f VS theoretical median: %f' % (sorted(cauchy_sequence)[n/2], m)
+print 'Empiric median:  %f VS theoretical median: %f' % (sorted(cauchy_sequence)[n / 2], m)
 
 # range_bound = ceil(max(map(abs, cauchy_sequence)))
 range_bound = 20

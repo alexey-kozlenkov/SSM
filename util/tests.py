@@ -1,6 +1,6 @@
 __author__ = 'Alexey'
 from math import sqrt, floor
-
+from numpy import linspace
 from scipy.stats import chi2
 
 
