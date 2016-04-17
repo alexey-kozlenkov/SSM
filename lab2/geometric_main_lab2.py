@@ -9,8 +9,7 @@ from util.generator.discrete_random_variable import geometric
 N = 1000
 p = 0.7
 
-base_sequence = multiplicative_congruential_generator(mcg_data.a0, mcg_data.M, mcg_data.beta, N)
-geometric_seq = geometric(base_sequence, p)
+geometric_seq = geometric(N, p)
 
 k = int(max(geometric_seq))
 exact_geometric_density = build_exact_geometric_density(p, n=k)
