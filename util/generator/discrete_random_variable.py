@@ -9,9 +9,8 @@ def geometric(n, p):
 
 
 def negative_binomial(n, p, r):
-    base_sequence = builtin_generator(n)
-    if len(base_sequence) % r != 0:
-        print 'Base sequence length does not match passed r parameter.'
+    if n % r != 0:
+        print 'Sequence length does not match passed r parameter.'
         return None
-    geometric_seq = geometric(base_sequence, p)
+    geometric_seq = geometric(n, p)
     return [sum(geometric_seq[i:i + r]) for i in range(0, len(geometric_seq), r)]
