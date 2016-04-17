@@ -1,3 +1,5 @@
+from util.utils import get_average_and_dispersion
+
 __author__ = 'Alexey'
 from lab2.function import build_exact_geometric_density, build_empiric_distribution_function, \
     build_exact_geometric_distribution_function
@@ -24,8 +26,7 @@ plot_two_functions(exact_geometric_distribution_function[0], exact_geometric_dis
                    'Empiric distr. function',
                    'lab2/geometric_distribution_functions', 'Geometric distribution functions')
 
-average = sum(geometric_seq) / N
-dispersion = sum((x - average) ** 2 for x in geometric_seq) / (N - 1)
+average, dispersion = get_average_and_dispersion(geometric_seq)
 print 'Geometric distribution:'
 print '\tExpected average: ', average, ', expected dispersion: ', dispersion
 print '\tExact average: ', (1 - p) / p, ', exact dispersion: ', (1 - p) / p ** 2

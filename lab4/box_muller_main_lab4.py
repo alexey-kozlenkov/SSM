@@ -1,5 +1,6 @@
 from util.generator.continious_random_variable import normal_standard_by_box_muller
 from util.plotter import plot_histogram, plot_two_histograms
+from util.utils import get_average_and_dispersion
 
 __author__ = 'Alexey' 
 
@@ -11,14 +12,12 @@ print 'Box-muller transformation for generating normal standard sequences ' \
 
 
 print 'First sequence:' 
-average = sum(first_seq) / n 
-dispersion = sum((x - average) ** 2 for x in first_seq) / (n - 1) 
+average, dispersion = get_average_and_dispersion(first_seq)
 print '\tEmpiric average: %f' % average 
 print '\tEmpiric dispersion: %f' % dispersion
 
 print 'Second sequence:' 
-average = sum(second_seq) / n 
-dispersion = sum((x - average) ** 2 for x in second_seq) / (n - 1) 
+average, dispersion = get_average_and_dispersion(second_seq)
 print '\tEmpiric average: %f' % average 
 print '\tEmpiric dispersion: %f' % dispersion
 

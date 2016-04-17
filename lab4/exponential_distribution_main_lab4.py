@@ -1,6 +1,7 @@
 from math import ceil
 from lab4.function import build_exact_exponential_distribution_density
 from util.plotter import plot_histogram_with_exact_function
+from util.utils import get_average_and_dispersion
 
 __author__ = 'Alexey'
 from util.generator.continious_random_variable import exponential
@@ -10,8 +11,7 @@ n = 10000
 
 print 'Exponential distribution: lambda=%f' % l
 exponential_sequence = exponential(l, n)
-average = sum(exponential_sequence) / n
-dispersion = sum((x - average) ** 2 for x in exponential_sequence) / (n - 1)
+average, dispersion = get_average_and_dispersion(exponential_sequence)
 print '\tEmpiric average: %f VS theoretical average: %f' % (average, 1. / l)
 print '\tEmpiric dispersion: %f VS theoretical dispersion: %f' % (dispersion, 1. / l ** 2)
 
