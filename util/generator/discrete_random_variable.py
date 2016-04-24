@@ -14,3 +14,8 @@ def negative_binomial(n, p, r):
         return None
     geometric_seq = geometric(n, p)
     return [sum(geometric_seq[i:i + r]) for i in range(0, len(geometric_seq), r)]
+
+
+def bernoulli(n, p):
+    base_sequence = builtin_generator(n)
+    return [0 if a < p else 1 for a in base_sequence]
