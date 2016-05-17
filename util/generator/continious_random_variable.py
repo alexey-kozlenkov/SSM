@@ -28,6 +28,7 @@ def mixed(n, p, first_distribution, second_distribution):
     base_sequence = builtin_generator(n)
     return [first_distribution[i] if base_sequence[i] < p else second_distribution[i] for i in range(n)]
 
+
 def normal_standard_by_box_muller(n):
     first_sequence = builtin_generator(n, -1, 1)
     second_sequence = builtin_generator(n, -1, 1)

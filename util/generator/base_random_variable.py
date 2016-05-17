@@ -1,4 +1,5 @@
 __author__ = 'Alexey'
+from math import sqrt, cos, pi, sin
 from numpy.random import uniform
 
 
@@ -25,3 +26,9 @@ def maclaren_marsaglia_generator(sequence_1, sequence_2, k, n):
 
 def builtin_generator(n, a=0, b=1):
     return uniform(a, b, n)
+
+
+def in_circle_base_generator(r, n):
+    base1 = builtin_generator(n)
+    base2 = builtin_generator(n)
+    return [(r * sqrt(a1) * cos(2 * pi * a2), r * sqrt(a1) * sin(2 * pi * a2)) for a1, a2 in zip(base1, base2)]
