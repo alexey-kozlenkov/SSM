@@ -38,17 +38,13 @@ def process_free_clients():
 
 def process_client(client, shopboard):
     if shopboard:
-        if push_to_shopboard(client, shopboard):
-            print('\t\tClient {} stopped at the {} shopboard.'.format(client, shopboard.name))
-        elif shopboard.next_shopboard:
+        result = push_to_shopboard(client, shopboard)
+        if not result:
             process_client(client, shopboard.next_shopboard)
-    elif purchases[client]:
-        print('\t\tClient finished purchasing and going to the cash desk with {} purchases'.format(purchases[client]))
+    elif client in purchases:
         analyze.update_statistics(current_client_process_time, cash_queue, purchases, purchases[client],
                                   purchase_process_time)
         cash_queue.append(client)
-    else:
-        print('\t\tClient did his stuff and going to the exit.')
 
 
 def push_to_shopboard(client, shopboard):
@@ -65,8 +61,6 @@ def process_shopboards_queues():
     for shopboard, queue in shopboard_lock.items():
         for client in queue:
             queue[client] -= 1
-            if not queue[client]:
-                print('\t\tClient {} finished doing his stuff ad the {} shopboard.'.format(client, shopboard.name))
 
 
 def process_cash_desk_queue():

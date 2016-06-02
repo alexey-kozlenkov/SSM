@@ -17,7 +17,6 @@ next_client_arrive_time = next_client_time(lambd)
 
 for t in range(total_time):
     if t == next_client_arrive_time:
-        print('\tClient arrived')
         clients_counter += 1
         next_client_arrive_time += next_client_time(lambd)
         client_id = uuid.uuid4()
