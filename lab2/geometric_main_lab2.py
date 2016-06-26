@@ -25,5 +25,5 @@ plot_two_functions(exact_geometric_distribution_function[0], exact_geometric_dis
 
 average, dispersion = get_average_and_dispersion(geometric_seq)
 print('Geometric distribution:')
-print(('\tExpected average: ', average, ', expected dispersion: ', dispersion))
-print(('\tExact average: ', (1 - p) / p, ', exact dispersion: ', (1 - p) / p ** 2))
+print('\tExpected average: ', average, ', expected dispersion: ', dispersion)
+print('\tExact average: ', (1 - p) / p, ', exact dispersion: ', (1 - p) / p ** 2)

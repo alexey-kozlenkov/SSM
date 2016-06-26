@@ -17,7 +17,7 @@ def plot_histogram_with_exact_function(sequence, k, exact_y, exact_label, filena
     n, bins, patches = plot.hist(sequence, k, range=range_p, normed=True, zorder=3, label='Histogram')
 
     bin_centers = [0.5 * (bins[i] + bins[i + 1]) for i in range(k)]
-    plot.plot(bin_centers, exact_y[::len(exact_y) / k][:k], color='red', label=exact_label, zorder=3)
+    plot.plot(bin_centers, exact_y[::int(len(exact_y) / k)][:k], color='red', label=exact_label, zorder=3)
 
     plot.xticks()
     plot.title(title if title else '')

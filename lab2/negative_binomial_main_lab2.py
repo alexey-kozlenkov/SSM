@@ -28,5 +28,5 @@ plot_two_functions(exact_negative_binomial_density_function[0], exact_negative_b
 
 average, dispersion = get_average_and_dispersion(negative_binomial_sequence)
 print('Negative binomial distribution:')
-print(('\tExpected average: ', average, ', expected dispersion: ', dispersion))
-print(('\tExact average: ', r * (1 - p) / p, ', exact dispersion: ', r * (1 - p) / p ** 2))
+print('\tExpected average: ', average, ', expected dispersion: ', dispersion)
+print('\tExact average: ', r * (1 - p) / p, ', exact dispersion: ', r * (1 - p) / p ** 2)

@@ -12,5 +12,4 @@ p = [[(0.1, s[0]), (0.2, s[1]), (0.7, s[2])],
 
 base_sequence = multiplicative_congruential_generator(mcg_data.a0, mcg_data.M, mcg_data.beta, t)
 chain = build_chain(p, p_0, base_sequence)
-print(('Percentage: %d: %.3f, %d: %.3f, %d: %.3f' \
-       % (s[0], float(chain.count(s[0])) / t, s[1], float(chain.count(s[1])) / t, s[2], float(chain.count(s[2])) / t)))
+print('Percentage: {:d}: {:.3f}, {:d}: {:.3f}, {:d}: {:.3f}'.format(s[0], float(chain.count(s[0])) / t, s[1], float(chain.count(s[1])) / t, s[2], float(chain.count(s[2])) / t))
