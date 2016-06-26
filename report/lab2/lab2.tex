@@ -1,0 +1,200 @@
+\documentclass[a4paper]{article}
+\pagestyle{plain}
+
+\usepackage[russian]{babel} %Русские шрифты
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage{literat}
+\usepackage{graphicx} % для вставки картинок
+\usepackage{amssymb,amsfonts,amsmath,amsthm,mathrsfs} % математические дополнения от АМС
+\usepackage{hyperref} %для гиперссылок
+\usepackage{indentfirst} %отступ для первой главы параграфа
+\usepackage{upgreek} %для красивенькой буквы фи
+\usepackage{listings} % для листинга кода
+\usepackage{color} % для использоания цветного фона в листинге кода
+\usepackage[justification=centering]{caption}  % для центрирования подписи в картинке
+\usepackage{tocloft} % для нормального размера названия заголовка содержания
+\usepackage{caption} % для человеческих подписей к рисункам
+\usepackage{titlesec}
+\usepackage{csquotes}
+
+\renewcommand{\bfdefault}{b}   % Делает жирный шрифт менее широким
+\unitlength=1mm %Единица измерения длины в рисунках - 1 мм
+\renewcommand\thesection{\arabic{section}} % так как типа дока - extreport, эта команда оставить нормальную нумерацию section
+\renewcommand{\Re}{\text {Re}}
+\renewcommand{\Im}{\text {Im}}
+
+\usepackage{geometry} % отступы и все такое
+ \geometry{
+ a4paper,
+ left=20mm,
+ right=10mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\setlength{\textheight}{59\baselineskip}
+\setlength{\textheight}{\baselinestretch\textheight}
+\setlength{\columnsep}{1cm}
+\addtolength{\textheight}{\topskip}
+\lstset{numbers=left,
+				language=Python,
+				keywordstyle=\bfseries\color{blue},
+				numberstyle=\tiny\color{mygray},
+				stringstyle=\color{mymauve},
+				title=\lstname,
+				frame=double,
+				showstringspaces=false,
+				keepspaces=true,
+				basicstyle=\fontsize{7}{10}\ttfamily}
+				
+				
+% отступ в заголовках
+\newlength{\normalparindent}
+\AtBeginDocument{}
+\titleformat{name=\section}[block]
+  {\Large\bfseries}
+  {\hspace{\normalparindent}\thesection}
+  {0.5em}
+  {}
+
+% отступ в подзаголовках
+\titleformat{name=\subsection}[block]
+  {\large\bfseries}
+  {\hspace{\normalparindent}\thesubsection}
+  {0.5em}
+  {}
+
+% отступ в подподзаголовках
+\titleformat{name=\subsubsection}[block]
+	{\bfseries}
+	{\hspace{\normalparindent}\thesubsubsection}
+  {0.5em}
+  {}
+	
+\AtBeginDocument{
+  \let\div\relax % чтобы операторы дивергенции и градиента чуть что красивенько писались
+  \DeclareMathOperator{\div}{div}
+	\DeclareMathOperator{\grad}{grad}
+	\setlength{\normalparindent}{\parindent} % для выравнивания заголовков
+}
+		
+
+\begin{document}
+\begin{center}
+\large\texttt{Лабораторная работа 2}\\
+\LARGE\textbf{Моделирование дискретной случайной величины}
+\end{center}
+
+
+\section{Условие}
+\subsection{Задание 1}
+Осуществить моделирование $n = 1000$ реализаций СВ для следующих распределений:
+\begin{itemize}
+	\item Геометрическое -- $Ge(p): p = 0.7$;
+	\item Обратное биномиальное – $\overline{Bi}(r, p): r = 5, p = 0.5$.
+\end{itemize}
+Для этого можно использовать любой генератор БСВ.
+Вывести на экран несмещенные оценки математического ожидания и
+ дисперсии, сравнить их с истинными значениями.
+
+
+\subsection{Дополнительные задания}
+
+\subsubsection{Построение гистограмм}  
+Построить гистограмму и сравнить с графиком теоретической плотности распределения.
+
+\subsubsection{Построение функций распределения}  
+Построить график эмпирической функции распределения и сравнить с 
+графиком теоретической функции распределения.
+
+\subsubsection{Моделирование цепи Маркова}  
+Смоделировать $n = 100$ реализаций однородной цепи Маркова первого 
+порядка с пространством состояний $S = \{0, 1, 2\}$ длительности $T = 1000$. 
+Параметры цепи Маркова: 
+\begin{itemize}
+	\item начальное распределение вероятностей: $\pi = (1, 0, 0)$;
+	\item матрица вероятностей одношаговых переходов P:
+	$$
+		P = \left(
+		\begin{array}{l}
+			0.1 \quad 0.2 \quad 0.7\\
+			0.3 \quad 0.4 \quad 0.3\\
+			0.6 \quad 0.2 \quad 0.2
+		\end{array}
+		\right)
+	$$
+\end{itemize}
+Вывести средние доли каждого из состояний.
+
+
+
+\section{Теория}
+\subsection{Геометрическое распределение}
+Геометрически распределенная случайная величина описывает
+число испытаний Бернулли до первого успеха, если вероятного успеха
+в каждом испытании равна $p$.
+
+\texttt{Алгоритм моделирования} состоит в следующем:
+\begin{itemize}
+	\item Моделирование БСВ $\alpha$;
+	\item Принятия за реализацию геометрически распределенной
+	случайной величины значения: $\xi = \frac{\ln(\alpha)}{\ln(1 - p)}$ 
+\end{itemize}
+
+\subsection{Отрицательное биномиальное распредение}
+\texttt{Алгоритм моделирования} случайной величины,  
+$\overline{Bi}(r, p)$-распределенной, состоит в следующем:
+
+\begin{itemize}
+	\item Моделируется $Ge(p)$-распределенная случайная величина,
+	размером $n * r$;
+	\item За реализацию отрицательно-биномиально распределенной
+	случайной величины принимается сумма $r$ значений
+	из сгенерированной геомтерически-распределенной последовательности.
+\end{itemize}
+
+\subsection{Цепь Маркова}
+Смоделировать дискретную цепь Маркова очень легко. Вкратце идея такая:
+для каждого конкретного состояния известны вероятности перехода во все
+возможные состояния. На каждом шаге построения реализации производится
+эксперимент Бернулли и по его результату определяется следующее
+состояние.
+
+\section{Результаты}
+\begin{lstlisting}[title=Geometric distribution, frame=None]
+Expected average:  0.453 , expected dispersion:  0.6124034034034094
+Exact average:  0.42857142857142866 , exact dispersion:  0.6122448979591838
+\end{lstlisting}
+
+\begin{lstlisting}[title=Negative binomial distribution, frame=None]
+Expected average:  5.159 , expected dispersion:  11.569288288288316
+Exact average:  5.0 , exact dispersion:  10.0
+\end{lstlisting}
+
+\begin{lstlisting}[title=Markov chain, frame=None]
+Percentage: 0: 0.341, 1: 0.244, 2: 0.415
+\end{lstlisting}
+
+\begin{center}
+	\includegraphics[scale=0.8]{../../graphics/lab2/geometric_seq.png}
+\end{center}
+\begin{center}
+	\includegraphics[scale=0.8]{../../graphics/lab2/geometric_distribution_functions.png}
+	\includegraphics[scale=0.8]{../../graphics/lab2/negative_binomial_seq.png}
+	\includegraphics[scale=0.8]{../../graphics/lab2/negative_binomial_distribution_functions.png}
+\end{center}
+
+
+
+\section{Source code}
+\lstinputlisting[title=Geometric sequence main]{../../lab2/geometric_main_lab2.py}
+\lstinputlisting[title=Negative binomial sequence main]{../../lab2/negative_binomial_main_lab2.py}
+\lstinputlisting[title=Functions]{../../lab2/function.py}
+\lstinputlisting[title=Markov chain main]{../../lab2/markov_chain_main.py}
+\lstinputlisting[title=Generator]{../../util/generator/discrete_random_variable.py}
+\lstinputlisting[title=Utils]{../../util/utils.py}
+\end{document}
