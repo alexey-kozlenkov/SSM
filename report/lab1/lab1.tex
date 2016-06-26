@@ -1,0 +1,240 @@
+\documentclass[a4paper]{article}
+\pagestyle{plain}
+
+\usepackage[russian]{babel} %Русские шрифты
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage{literat}
+\usepackage{graphicx} % для вставки картинок
+\usepackage{amssymb,amsfonts,amsmath,amsthm,mathrsfs} % математические дополнения от АМС
+\usepackage{hyperref} %для гиперссылок
+\usepackage{indentfirst} %отступ для первой главы параграфа
+\usepackage{upgreek} %для красивенькой буквы фи
+\usepackage{listings} % для листинга кода
+\usepackage{color} % для использоания цветного фона в листинге кода
+\usepackage[justification=centering]{caption}  % для центрирования подписи в картинке
+\usepackage{tocloft} % для нормального размера названия заголовка содержания
+\usepackage{caption} % для человеческих подписей к рисункам
+\usepackage{titlesec}
+\usepackage{csquotes}
+
+\renewcommand{\bfdefault}{b}   % Делает жирный шрифт менее широким
+\unitlength=1mm %Единица измерения длины в рисунках - 1 мм
+\renewcommand\thesection{\arabic{section}} % так как типа дока - extreport, эта команда оставить нормальную нумерацию section
+\renewcommand{\Re}{\text {Re}}
+\renewcommand{\Im}{\text {Im}}
+
+\usepackage{geometry} % отступы и все такое
+ \geometry{
+ a4paper,
+ left=20mm,
+ right=10mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\setlength{\textheight}{59\baselineskip}
+\setlength{\textheight}{\baselinestretch\textheight}
+\setlength{\columnsep}{1cm}
+\addtolength{\textheight}{\topskip}
+\lstset{numbers=left,
+				language=Python,
+				keywordstyle=\bfseries\color{blue},
+				numberstyle=\tiny\color{mygray},
+				stringstyle=\color{mymauve},
+				title=\lstname,
+				frame=double,
+				showstringspaces=false,
+				keepspaces=true,
+				basicstyle=\fontsize{7}{10}\ttfamily}
+				
+				
+% отступ в заголовках
+\newlength{\normalparindent}
+\AtBeginDocument{}
+\titleformat{name=\section}[block]
+  {\Large\bfseries}
+  {\hspace{\normalparindent}\thesection}
+  {0.5em}
+  {}
+
+% отступ в подзаголовках
+\titleformat{name=\subsection}[block]
+  {\large\bfseries}
+  {\hspace{\normalparindent}\thesubsection}
+  {0.5em}
+  {}
+
+% отступ в подподзаголовках
+\titleformat{name=\subsubsection}[block]
+	{\bfseries}
+	{\hspace{\normalparindent}\thesubsubsection}
+  {0.5em}
+  {}
+	
+\AtBeginDocument{
+  \let\div\relax % чтобы операторы дивергенции и градиента чуть что красивенько писались
+  \DeclareMathOperator{\div}{div}
+	\DeclareMathOperator{\grad}{grad}
+	\setlength{\normalparindent}{\parindent} % для выравнивания заголовков
+}
+		
+
+\begin{document}
+\begin{center}
+\LARGE\textbf{Лабораторная работа 1}
+\end{center}
+
+
+\section{Условие}
+\subsection{Задание 1}
+Осуществить моделирование n = 1000 реализаций БСВ с помощью 
+\texttt{мультипликативного конгруэнтного метода} (МКМ) с параметрами:
+\begin{itemize}
+	\item $a_0 = 5^4$
+	\item $c = 1474614171$,
+	\item $M = 231$,
+	\item $\beta = \max(c, M - c)$ 
+\end{itemize}
+и вывести 1-ый, 100-ый, 900-ый и 1000-ый элементы сгенерированной последовательности.
+
+\subsection{Задание 2}
+Осуществить моделирование n = 1000 реализаций БСВ с помощью 
+\texttt{метода Макларена-Марсальи}, используя:
+\begin{itemize}
+	\item $D_1$ = $MKM\{a_0=5^4, c = 1474614171, M = 231, \beta = \max(c, M - c)\}$,
+	\item $D_2$ = $MKM\{a_0=2^{15}+3^5, c = 830280225, M = 231, \beta = \max(c, M - c)\}$,
+	\item K -- объем вспомогательной таблицы -- 64,
+\end{itemize}
+и вывести 1-ый, 100-ый, 900-ый и 1000-ый элементы сгенерированной последовательности. 
+
+\subsection{Допольнительные задания}
+\subsubsection{Тест совпадения моментов} 
+Проверить точность моделирования с помощью теста «совпадения моментов» с
+уровнем значимости $\varepsilon = 0.05$. В качестве параметра t выбрать значение 30.
+
+\subsubsection{Тест \enquote{ковариация}} 
+Проверить точность моделирования с помощью теста «ковариация» с уровнем значимости 
+$\varepsilon$ = 0.05.
+
+\subsubsection{Тест -Пирсона} 
+Проверить точность моделирования с помощью $\chi^2$-критерий Пирсона.
+
+\subsubsection{Построение гистограмм}  
+Построить гистограмму распределения выходной последовательности 
+генератора на отрезке [0, 1]. Число интервалов k, но которые делится отрезок [0, 1] выбрать самостоятельно.
+
+
+\section{Теория}
+\subsection{Мультипликативный конгруэнтный метод}
+Согласно этому методу, псевдослучайная последовательность $\alpha_1, ... \alpha_n$
+реализаций БСВ вычисляется по следующим реккурентным формулам:
+$$
+	\left\{
+		\begin{array}{l}
+			 \alpha_{t} = \frac{\alpha_t^*}{M}\\
+			 \alpha_t^*  = (\beta \alpha_t^*) mod M, \; t = 1, 2,...
+		\end{array}
+	\right.
+$$
+
+\subsection{Метод Макларена-Марсальи}
+Метод комбинирует два простейших датчика БСВ, например, мультипликативных
+конгруэнтных.
+
+Пусть $\{\beta_t\}, \{c_t\}$– псевдослучайные последовательности, 
+порождаемые независимо работающими датчиками; $\{\alpha_t\}$-- 
+результирующая псевдослучайная последовательность реализаций БСВ; 
+$V = \{V(0), V(1), ..., V(K-1)\}$-- вспомогательная таблица K чисел.
+Процесс вычисления $\{\alpha_t\}$ включает следующие этапы:
+\begin{itemize}
+	\item первоначальное заполнение таблицы V: $V(i) = \beta_i, \; i = [0, K-1]$
+	\item случайный выбор из таблицы: $\alpha_t = V(s), \, s = [c_t \cdot K]$
+	\item обновление табличных значений: $V(s) = \beta_{t+K}, \, t = 0, 1, 2,...$.
+\end{itemize}
+
+
+\subsection{Тест совпадения моментов}
+Тест совпадения моментов проверяет гипотезы о том, что математическое ожидание 
+и дисперсия сгенерированной случайной величины близки, соответственно, к $\frac{1}{2}, \frac{1}{12}$.
+
+Для этого вычисляются отклонения реальных оценок МО и дисперсии от теоретических.
+Затем проверяются гипотезы:
+$$H_0: \mu = \frac{1}{2}, \quad\quad H_1: \mu \neq \frac{1}{2}$$
+$$H_1: \sigma^2 = \frac{1}{12}, \quad\quad H_1: \sigma^2 \neq \frac{1}1{2}$$
+ следующим образом:
+$$
+	\left\{
+	\begin{array}{l}
+				H_0, \; c_i(n)\cdot|\xi_i| < \Lambda\\
+				H_1, \; otherwise
+	\end{array}
+	\right.,
+$$
+где $\xi_i$ - отклонения, $c_i, \Lambda$ - заранее определенные константы.
+
+\subsection{Тест \enquote{ковариация}}
+
+Тест основан на ковариационной функции:
+$$
+R(\alpha, \beta) = E((\alpha - E(\alpha))\cdot(\beta - E(\beta))).
+$$
+Тогда, если $\alpha$ и $ \beta$ независимые, $R(0, 1)$-распределенные величины, то $R(\alpha, \beta) 
+= 0$, иначе $R(\alpha, \beta) = \frac{1}{12}$
+
+Для проверки критерия вычислим:
+$
+\hat{R}(j) = \frac{1}{n - j - 1} \sum\limits_{i = 1}^{n - j}
+{\alpha_i \cdot \alpha_{i+j}} - \frac{n}{n-1} \cdot m^2, \; j = 0, 1,..., t.
+$,
+где $1 < t << n$, $m$ - выборочное среднее.
+
+Гипотеза $H_0$ принимается, если:
+$$|\hat{R}(j) - R(j)| < \frac{c_j \Lambda}{12\sqrt{n - 1}},$$
+иначе принимается гипотеза $H_1$.
+
+\subsection{Тест $\chi^2$-Пирсона}
+
+Критерий $\chi^2$-Пирсона позволяет проверить гипотезу $H_0$ о том,
+что данная случайная величина подчиняется некому закону распределения.
+
+Для проверки критерия вычисляется значение $\chi^2$, и затем, используя заранее
+заданный доверительный интервал, сравнивается по таблице.
+$$\chi^2 = \sum\limits_{j = 1}^k{\frac{(n_j - E_j)^2}{E_j}},$$
+где $k, n_j, E_j$ - количество бьющих отрезок интервалов, количество элементов
+в данном интервале и ожидаемое количество элементов в данном интервале.
+
+
+
+
+\newpage
+\section{Результаты}
+\begin{lstlisting}[title=Results, frame=None]
+Multiplicative congruential generator: 1: 0.169208, 100: 0.713313, 900: 0.652642, 1000: 0.408691
+Method of moments test:  (True, True)
+Covariation test:  (False, 1)
+Chi-square test:  (30.64, 0.14337644429702712)
+
+MacLaren-Marsaglia generator: 1: 0.828576, 100: 0.228093, 900: 0.627775, 1000: 0.849502
+Method of moments test:  (True, True)
+Covariation test:  (False, 11)
+Chi-square test:  (31.039999999999996, 0.15575581993574286)
+\end{lstlisting}
+
+\begin{center}
+	\includegraphics[scale=0.65]{../../graphics/lab1/mcg.png}
+	\includegraphics[scale=0.65]{../../graphics/lab1/{maclaren-marsaglia}.png}
+\end{center}
+
+
+
+
+\newpage
+\section{Source code}
+\lstinputlisting[title=Main]{../../lab1/main_lab1.py}
+\lstinputlisting[title=Generator]{../../util/generator/base_random_variable.py}
+\lstinputlisting[title=Tests]{../../util/tests.py}
+\end{document}
