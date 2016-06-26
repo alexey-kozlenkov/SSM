@@ -8,8 +8,8 @@ n = 10000
 
 print('Cauchy distribution:')
 cauchy_sequence = cauchy(m, c, n)
-print('Average and dispersion are not defined.')
-print('Empiric median:  %f VS theoretical median: %f' % (sorted(cauchy_sequence)[n / 2], m))
+print('\tAverage and dispersion are not defined.')
+print('\tEmpiric median:  %f VS theoretical median: %f' % (sorted(cauchy_sequence)[int(n / 2)], m))
 
 # range_bound = ceil(max(map(abs, cauchy_sequence)))
 range_bound = 20
