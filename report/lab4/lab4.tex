@@ -1,0 +1,301 @@
+\documentclass[a4paper]{article}
+\pagestyle{plain}
+
+\usepackage[russian]{babel} %Русские шрифты
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage{literat}
+\usepackage{graphicx} % для вставки картинок
+\usepackage{amssymb,amsfonts,amsmath,amsthm,mathrsfs} % математические дополнения от АМС
+\usepackage{hyperref} %для гиперссылок
+\usepackage{indentfirst} %отступ для первой главы параграфа
+\usepackage{upgreek} %для красивенькой буквы фи
+\usepackage{listings} % для листинга кода
+\usepackage{color} % для использоания цветного фона в листинге кода
+\usepackage[justification=centering]{caption}  % для центрирования подписи в картинке
+\usepackage{tocloft} % для нормального размера названия заголовка содержания
+\usepackage{caption} % для человеческих подписей к рисункам
+\usepackage{titlesec}
+\usepackage{csquotes}
+
+\renewcommand{\bfdefault}{b}   % Делает жирный шрифт менее широким
+\unitlength=1mm %Единица измерения длины в рисунках - 1 мм
+\renewcommand\thesection{\arabic{section}} % так как типа дока - extreport, эта команда оставить нормальную нумерацию section
+\renewcommand{\Re}{\text {Re}}
+\renewcommand{\Im}{\text {Im}}
+
+\usepackage{geometry} % отступы и все такое
+ \geometry{
+ a4paper,
+ left=20mm,
+ right=10mm,
+ top=20mm,
+ bottom=20mm,
+ }
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\setlength{\textheight}{59\baselineskip}
+\setlength{\textheight}{\baselinestretch\textheight}
+\setlength{\columnsep}{1cm}
+\addtolength{\textheight}{\topskip}
+\lstset{numbers=left,
+				language=Python,
+				keywordstyle=\bfseries\color{blue},
+				numberstyle=\tiny\color{mygray},
+				stringstyle=\color{mymauve},
+				title=\lstname,
+				frame=double,
+				showstringspaces=false,
+				keepspaces=true,
+				basicstyle=\fontsize{7}{10}\ttfamily}
+				
+				
+% отступ в заголовках
+\newlength{\normalparindent}
+\AtBeginDocument{}
+\titleformat{name=\section}[block]
+  {\Large\bfseries}
+  {\hspace{\normalparindent}\thesection}
+  {0.5em}
+  {}
+
+% отступ в подзаголовках
+\titleformat{name=\subsection}[block]
+  {\large\bfseries}
+  {\hspace{\normalparindent}\thesubsection}
+  {0.5em}
+  {}
+
+% отступ в подподзаголовках
+\titleformat{name=\subsubsection}[block]
+	{\bfseries}
+	{\hspace{\normalparindent}\thesubsubsection}
+  {0.5em}
+  {}
+	
+\AtBeginDocument{
+  \let\div\relax % чтобы операторы дивергенции и градиента чуть что красивенько писались
+  \DeclareMathOperator{\div}{div}
+	\DeclareMathOperator{\grad}{grad}
+	\setlength{\normalparindent}{\parindent} % для выравнивания заголовков
+}
+		
+
+\begin{document}
+\begin{center}
+\large\texttt{Лабораторная работа 4}\\
+\LARGE\textbf{Моделирование непрерывной случайной величины}
+\end{center}
+
+
+\section{Условие}
+\subsection{Задание 1}
+Осуществить моделирование $n = 10000$ реализаций случайной величины
+из нормального закона распределения $N(m, s^2)$ с заданными 
+параметрами: $m = -2, s^2 = 1$. 
+
+Для моделирования воспользоваться алгоритмом, основанным на ЦПТ;
+(в качестве количества используемых слагаемых можно взять N = 42, 
+или, например, 42, или другое на свой выбор). Вычислить несмещенные 
+оценки математического ожидания и дисперсии, сравнить их с 
+истинными значениями.
+
+\subsection{Задание 2}
+Смоделировать $n = 10000$ случайных величин из заданных абсолютно
+непрерывных распределени:
+\begin{itemize}
+	\item Экспоненциальное $Е(a),\, a = 0.25$;
+	\item Коши $C(a,b), \, a = 1,  \, b = 2$.
+\end{itemize}
+
+Вычислить несмещенные 
+оценки математического ожидания и дисперсии, сравнить их с 
+истинными значениями (если это возможно). Если математического 
+ожидания не существует, то вычислить выборочное значение медианы 
+и сравнить его с теоретическим.
+
+
+\subsection{Дополнительные задания}
+\subsubsection{Смесь распределений}
+Смоделировать $n = 10000$ случайных величин из смеси двух 
+распределений. Распределения взять из своего варианта задания 2,
+$\pi = 0.8$ – вероятность выбора элемента из первого распределения. 
+Важно: В случае если у одного из распределений из вашего варианта 
+математическое ожидание или дисперсия не существует, то заменить 
+его на нормальное распределение из своего варианта задания 1. 
+Вычислить несмещенные оценки математического ожидания и дисперсии,
+сравнить их с истинными значениями (найти в литературе или 
+вывести самостоятельно формулы для нахождения математического
+ожидания и дисперсии смеси распределений).
+
+\subsubsection{Преобразование Бокса-Мюллера}
+Осуществить моделирование $n = 10000$ реализаций случайной 
+величины из стандартного нормального закона распределения N(0, 1),
+используя преобразование Бокса — Мюллера.
+
+\subsubsection{Построение гистограмм}
+Для сгенерированных выборок из заданных распределений построить
+гистограммы, сравнить с теоретическими плотностями распределения
+вероятностей.
+
+\section{Теория}
+\subsection{Нормальное распределение}
+Непрерывная случайная величина $\xi$ с плотностью распределения
+$$
+p_{\xi}(x) = \frac{1}{\sqrt{2\pi}\sigma}\exp{\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)}
+$$
+имеет нормальное (\textit{Гауссово}) распределение с параметрами $\mu$ и $\sigma^2$ -
+среднее значение и дисперсией соответственно.
+
+Данное распределение является одним из самых классных и известных
+на просторах статистических и вероятностных наук.
+
+Случайную $N(0, 1)$-распределенную величину называют 
+\texttt{стандартной нормальной} случайной величиной.
+
+Стандартная нормальная случайная $\eta$ величина связана
+с любой другой нормальной величиной $\xi-N(m, \sigma^2)$ соотношением:
+$$
+\xi = m - \eta \cdot \sigma
+$$
+
+Таким образом, генерация нормально распределенной случайной величины сводится
+к генерации стандартной нормально распределенной случайной величины.
+
+Последнюю можно сгенерировать следующим способом, используя великую
+\texttt{Центральную Предельную Теорему} [для протокола: неспроста
+ее название пишется большими буквами, ha?]:
+\begin{itemize}
+	\item генерируется $N$ независимых реализаций БСВ;
+	\item величина $\varsigma = \sqrt{\frac{12}{N}}\sum\limits_{i=1}^{N}{a_i} - \frac{N}{2}$
+	будет иметь, согласно ЦПТ, стандартное нормальное распределение.
+\end{itemize}
+
+\subsection{Экспоненциальное распределение}
+Непрерывная случайная величина $\xi \in [0, +\infty]$ с функцией распределения
+и плотностью вероятности:
+$$
+F_{\xi}(x) = 1 - e^{-\lambda x}, \quad p_{\xi}(x) = \lambda e^{-\lambda x}, \; x \geq 0
+$$
+имеет экспоненциальное распределение $E(\lambda)$.
+
+Это распределение тоже хорошо собой. Мы его еще увидим в лабораторной
+про магазин и массовое обслуживание, вот это вот все.
+
+Моделирование экспоненциально распределенной случайной 
+величины происходит следующим образом:
+\begin{itemize}
+	\item генерируется БСВ $\alpha$;
+	\item в качестве экспоненциально-распределенной случайной величины
+	принимается $\xi = - \frac{\ln(\alpha)}{\lambda}$.
+\end{itemize}
+Готово! (Вы восхитительны).
+
+\subsection{Распределение Коши}
+Непрерывная случайная величина $\xi$ с плотностью распределения:
+$$p_{\xi}(x) = \frac{1}{\pi c} \cdot \frac{1}{((x - m) / c)^2}$$
+имеет распределение Коши $C(c, m)$.
+
+Моделируется оно следующим образом:
+\begin{itemize}
+	\item модуелируется БСВ $\alpha$;
+	\item принимается решение о том, что реализацией $\xi$, распределенной $C(c, m)$,
+	является величина: $$x = m + c \cdot \tan(\pi (\alpha - 0.5))$$
+\end{itemize}
+
+
+\subsection{Преобразование Бокса-Мюллера}
+Данное преобразование является еще одним способ генерирования
+стандартной нормально распределенной случайной величины,
+используя 2 набора равномерно распределенных случайных величин.
+
+\subsection{Смесь распределений}
+Смесь распределений - это когда смешивают два распределения.
+
+Генерируется такое очень просто: для каждой из смешиваемой последовательностей
+задается вероятность принятия элемента этой последовательности.
+После чего генерируется реализация БСВ $\alpha$, каждый элемент которой
+своим значением определяет, какой элемент из смешиваемых последовательностей
+будет принят на этот раз.
+
+Гораздо интереснее, как посчитать матожидание и дисперсию такой последовательности:
+Нетрудно догадаться, что -- согласно свойствам матожидания -- матожидание смешанной
+последовательности будет иметь вид: 
+$E_{mixed} = p \cdot E_1 + (1 - p) \cdot E_2$.
+
+Нехитрыми манипуляциями найдем выражение для дисперсии:
+$$D_{mixed}(\xi) = E_{mixed}(\xi)^2 - (E_{mixed}(\xi))^2;$$
+$$E_{mixed}(\xi)^2 = p \cdot E_1 (\xi)^2 + (1-p)\cdot E_2(\xi)^2 = p\cdot(D_1(\xi) + E_1^2(\xi)) + (1 - p)\cdot (D_2(\xi) + E_2^2(\xi))$$
+
+Алгоритм, значит, такой:
+\begin{itemize}
+	\item генерируется пара $x, y$ равномерно распределенных на отрезке [-1, 1] случайных величин;
+	\item вычисляется $s = x^2 + y^2$. Если значение будет больше 1 либо меньше 0, такое следует отбросить;
+	\item рассчитываются стандартные нормально распределенные случайные величины $z_0, z_1$ по формулам:
+	$$z_0 = x \cdot \sqrt{\frac{-2\ln{s}}{s}}, \; z_1 = y \cdot \sqrt{\frac{-2\ln{s}}{s}}$$
+\end{itemize}
+Готово!
+
+
+\section{Результаты}
+\begin{lstlisting}[title=Normal distribution, frame=None, keywordstyle=None]
+Normal distribution(-2.000000, 1.000000):
+	Empiric average: -2.00233666173
+	Empiric dispersion: 0.998449721551
+\end{lstlisting}
+
+\begin{lstlisting}[title=Exponential distribution, frame=None, keywordstyle=None]
+Exponential distribution: lambda=0.250000
+	Empiric average: 4.038493 VS theoretical average: 4.000000
+	Empiric dispersion: 16.238534 VS theoretical dispersion: 16.000000
+\end{lstlisting}
+
+\begin{lstlisting}[title=Cauchy distribution, frame=None, keywordstyle=None]
+Cauchy distribution:
+	Average and dispersion are not defined.
+	Empiric median:  1.052559 VS theoretical median: 1.000000
+\end{lstlisting}
+
+\begin{lstlisting}[title=Mixed distribution, frame=None, keywordstyle=None]
+Mixed distribution
+Using exponential distribution (lambda = 0.250) and normal distribution (m = -2.000, s^2 = 1.000)
+	Empiric average: 2.848721 VS theoretical average: 2.800000
+	Empiric dispersion: 18.907500 VS theoretical dispersion: 18.760000
+\end{lstlisting}
+
+\begin{lstlisting}[title=Box-Muller distribution, frame=None]
+Box-muller transformation for generating normal standard sequences returned sequences with 0.779000 filling.
+First sequence:
+	Empiric average: -0.006470
+	Empiric dispersion: 0.988627
+Second sequence:
+	Empiric average: -0.006103
+	Empiric dispersion: 1.026826
+\end{lstlisting}
+
+
+
+\newpage
+\begin{center}
+	\includegraphics[scale=0.8]{../../graphics/lab4/normal_seq.png}
+	\includegraphics[scale=0.8]{../../graphics/lab4/exponential_seq.png}
+	\includegraphics[scale=0.8]{../../graphics/lab4/cauchy_seq.png}
+	\includegraphics[scale=0.8]{../../graphics/lab4/mixed_seq.png}
+	\includegraphics[scale=0.8]{../../graphics/lab4/box_muller.png}
+
+\end{center}
+
+
+
+\section{Source code}
+\lstinputlisting[title=Normal distribtution]{../../lab4/normal_distribution_main_lab4.py}
+\lstinputlisting[title=Exponential distribution]{../../lab4/exponential_distribution_main_lab4.py}
+\lstinputlisting[title=Cauchy distribution]{../../lab4/cauchy_distribution_main_lab4.py}
+\lstinputlisting[title=Mixed distribution]{../../lab4/mixed_distribution_main_lab4.py}
+\lstinputlisting[title=Box-Muller transformation]{../../lab4/box_muller_main_lab4.py}
+\lstinputlisting[title=Functions]{../../lab4/function.py}
+\lstinputlisting[title=Generator]{../../util/generator/continious_random_variable.py}
+\lstinputlisting[title=Utils]{../../util/utils.py}
+\end{document}
