@@ -1,5 +1,5 @@
-__author__ = 'Alexey'
 from math import sqrt, cos, pi, sin
+
 from numpy.random import uniform
 
 

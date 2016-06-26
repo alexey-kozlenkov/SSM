@@ -1,10 +1,8 @@
-from util.utils import get_average_and_dispersion
-
-__author__ = 'Alexey'
 from lab2.function import build_exact_negative_binomial_density, build_exact_negative_binomial_distribution_function, \
     build_empiric_distribution_function
-from util.plotter import plot_histogram_with_exact_function, plot_two_functions
 from util.generator.discrete_random_variable import negative_binomial
+from util.plotter import plot_histogram_with_exact_function, plot_two_functions
+from util.utils import get_average_and_dispersion
 
 p = 0.5
 r = 5
@@ -29,6 +27,6 @@ plot_two_functions(exact_negative_binomial_density_function[0], exact_negative_b
                    'lab2/negative_binomial_distribution_functions', 'Negative binomial distribution functions')
 
 average, dispersion = get_average_and_dispersion(negative_binomial_sequence)
-print 'Negative binomial distribution:'
-print '\tExpected average: ', average, ', expected dispersion: ', dispersion
-print '\tExact average: ', r * (1 - p) / p, ', exact dispersion: ', r * (1 - p) / p ** 2
+print('Negative binomial distribution:')
+print(('\tExpected average: ', average, ', expected dispersion: ', dispersion))
+print(('\tExact average: ', r * (1 - p) / p, ', exact dispersion: ', r * (1 - p) / p ** 2))

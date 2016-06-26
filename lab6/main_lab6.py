@@ -1,8 +1,8 @@
-__author__ = 'Alexey'
 import uuid
-import lab6.shop as shop
-from random import expovariate
 from math import ceil
+from random import expovariate
+
+import lab6.shop as shop
 
 lambd = 95
 total_time = 8 * 60 * 60

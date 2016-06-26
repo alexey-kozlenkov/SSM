@@ -1,6 +1,5 @@
-__author__ = 'Alexey'
 from math import sqrt, floor
-from numpy import linspace
+
 from scipy.stats import chi2
 
 
@@ -32,5 +31,6 @@ def chi_square_test(sequence, k):
     for element in sequence:
         frequencies[floor(element * k)] += 1
     expected_frequency = float(len(sequence)) / k
-    chi_square = sum((frequency - expected_frequency) ** 2 / expected_frequency for frequency in frequencies.values())
+    chi_square = sum(
+        (frequency - expected_frequency) ** 2 / expected_frequency for frequency in list(frequencies.values()))
     return chi_square, chi2.cdf(chi_square, k)

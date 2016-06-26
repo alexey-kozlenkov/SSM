@@ -1,6 +1,3 @@
-__author__ = 'Alexey'
-
-
 average_purchases = 0
 cash_desk_work_time = 0
 cash_desk_visitors = 0
@@ -16,7 +13,6 @@ def update_statistics(current_wait_time, queue, purchases, current_client_purcha
     cash_desk_visitors += 1
     average_purchases += current_client_purchases
     cash_desk_wait_time += current_wait_time + sum(purchases[client] * purchase_process_time for client in queue)
-
 
     if current_wait_time or queue:
         cash_desk_real_waiters += 1

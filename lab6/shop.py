@@ -1,6 +1,6 @@
-__author__ = 'Alexey'
 from collections import namedtuple, deque
 from random import uniform, randint
+
 import lab6.analyze as analyze
 
 purchase_process_time = 3

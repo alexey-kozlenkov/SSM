@@ -1,7 +1,6 @@
 from math import sqrt, log, tan, pi
 
-__author__ = 'Alexey'
-from base_random_variable import builtin_generator
+from .base_random_variable import builtin_generator
 
 
 def normal(average, dispersion, n, N=12):

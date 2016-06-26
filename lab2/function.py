@@ -1,4 +1,3 @@
-__author__ = 'Alexey'
 from scipy.special import comb, betainc
 
 
@@ -28,7 +27,7 @@ def build_exact_negative_binomial_distribution_function(p, r, n=1000):
 
 def build_empiric_distribution_function(sequence, n=1000):
     x = [i for i in range(n)]
-    y = [float(len(filter(lambda x: x < x_i, sequence))) / len(sequence) for x_i in x]
+    y = [float(len([x for x in sequence if x < x_i])) / len(sequence) for x_i in x]
     return x, y
 
 

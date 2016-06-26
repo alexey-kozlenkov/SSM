@@ -1,7 +1,5 @@
 from matplotlib import pyplot as plot
 
-__author__ = 'Alexey'
-
 
 def plot_histogram(sequence, k, filename, title=None):
     plot.xkcd()

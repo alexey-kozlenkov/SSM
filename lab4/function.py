@@ -1,5 +1,5 @@
-__author__ = 'Alexey'
 from math import pi, sqrt, exp
+
 from numpy import linspace
 
 

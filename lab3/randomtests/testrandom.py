@@ -2,7 +2,6 @@
 
 import argparse
 import sys
-import randtest
 
 tests = {1: 'monobitfrequencytest',
          2: 'blockfrequencytest',
@@ -63,7 +62,7 @@ index = 0
 if len(args.tests) >= 1:
     testlist = args.tests
 else:
-    testlist = range(1, 16)
+    testlist = list(range(1, 16))
 ltst = len(testlist)
 
 # define the separator for the following outputs
@@ -89,6 +88,7 @@ def performrndtest(inputbits):
         if testhere < ltst: outh += sep
     return outh
 
+
 # gie out the header for the following tests
 testhere = 0
 for i in testlist:
@@ -102,7 +102,7 @@ if args.binary:  # interpret the file as a binary file,
     for b in bytes_read:
         n = ord(b)
         bstr = ""
-        for x in xrange(8):
+        for x in range(8):
             bstr = str(n % 2) + bstr
             n = n >> 1
         randin += bstr
